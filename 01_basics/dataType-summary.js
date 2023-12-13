@@ -10,7 +10,9 @@ const outsideTemp  = null
 let userEmail;
 
 const id = Symbol('123')
-const anotherId = symbol('123')
+const anotherId = Symbol('123')
+
+console.log(id===anotherId);
 
 // Reference (Non Primitive)
 
@@ -72,3 +74,33 @@ console.log(typeof bigNumber);
 // console.log(typeof arr); //object
 // console.log(typeof obj); //object
 // console.log(typeof func); //function
+
+
+// ************************************************
+
+// Stack (Primitive)
+
+
+let myYouTubeName = "Manjot_Singh"
+
+let anotherName = myYouTubeName
+
+anotherName="Not_Manjot"
+
+console.log(myYouTubeName);
+console.log(anotherName);  
+
+
+// Heap (Non - primitive)
+
+let userOne = {
+    email: "user@gmail.com",
+    upi : "user@ypl"
+}
+
+let userTwo = userOne
+
+userTwo.email= "two@gmail.com"
+
+console.log(userOne.email);
+console.log(userTwo.email);
