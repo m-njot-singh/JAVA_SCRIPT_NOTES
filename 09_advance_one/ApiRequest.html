@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="initial">
+        <input id="input" type="text">
+        <button id="find">FIND</button>
+    </div>
+    
+</body>
+<script>
+    let apiURL = "https://api.github.com/users/"
+    let finalURL; 
+    document.querySelector('#find').addEventListener('click',function(){
+
+
+        // console.log(document.querySelector('#input').value);
+        finalURL =`${apiURL}${document.querySelector('#input').value}`
+        console.log(finalURL);
+
+        // hide the input area on click find button
+
+        let dispInitial = document.querySelector('#initial')
+        // console.log(dispInitial);
+        dispInitial.style.display = "none"
+
+        // get data from api with old method with the help of XMLHttpRequest
+        let imgURL;
+        let profileName;
+        let followers;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', finalURL)
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                const data = JSON.parse(this.responseText)
+                imgURL = data.avatar_url;
+                // console.log(imgURL);
+                profileName = data.name;
+                // console.log(profileName);
+                followers = data.followers;
+                // console.log(followers);
+
+
+                const div = document.createElement('div')
+        div.id="output"
+
+        const img =document.createElement('img')
+        img.src=`${imgURL}`;
+
+        const info1=document.createElement('h2')
+        info1.innerHTML=`${profileName}`;
+
+        const info2=document.createElement('h2')
+        info2.innerHTML=`${followers}`;
+
+        // append img , and 2 h2's to the div that we created
+        div.appendChild(img)
+        div.appendChild(info1)
+        div.appendChild(info2)
+
+        // console.log(div);
+
+        // append new created div to body 
+        document.body.appendChild(div);
+
+            }
+        }
+        xhr.send();
+
+        // Create new div which iws displayed
+
+       
+    }) 
+   
+</script>
+</html>
