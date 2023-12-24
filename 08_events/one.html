@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // 01  //Dont use onclick property because it does not give more functionality
+
+    // document.getElementById('owl').onclick =function(){
+    //     alert("owl clicked")
+    // }
+
+
+    // 02 //use attachEvent() use previous time
+    // 03 //jQuery - on 
+
+    // 04 //THINGS TO LEARN
+        
+        // Type , timestamp , defaultPrevented 
+        // Target , toElement , srcElement , currentTarget ,
+        // clientX , clientY , screenX , screenY
+        // altKey , ctrlKey , shiftKey , KeyCode
+
+
+
+    // 05 //Best method is to use add event listeners they give propagation functionality
+    
+    // document.getElementById('owl').addEventListener('click', function(e){
+
+    //     console.log(e);
+    // },false)
+
+    // 06  //EVENT PROPAGATION
+
+    // TWO TYPES
+        // EVENT BUBLING (FALSE) (inside to outside)
+        // EVENT CAPTURINH (TRUE) (outside to inside)
+    
+
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log("clicked inside the ul")
+    //     // e.stopPropagation()
+    // }, false)
+
+    // document.getElementById('owl').addEventListener('click' , function(e){
+    //     console.log("clicked owl");
+    //     // e.stopPropagation();
+    // }, false)
+
+    // // 07  // preventDefault()
+
+    // document.getElementById('google').addEventListener('click', function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     console.log("GOOGLE CLICKED");
+    // },false)
+
+    // 08  // make little project to delete img on click
+
+    document.querySelector('#images').addEventListener('click' , function(e){
+        console.log(e.target.tagName);
+        if(e.target.tagName === 'IMG'){
+            const removeIT = e.target.parentNode;
+            console.log(removeIT);
+            removeIT.remove()
+        }
+    },false)
+
+    // removeIT.parentNode.removeChild(removeIT);
+
+</script>
+</html>
